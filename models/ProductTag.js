@@ -1,4 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
+const {Product} = require('./Product');
+const {Tag} = require('./Tag')
 
 const sequelize = require('../config/connection');
 
@@ -6,9 +8,34 @@ class ProductTag extends Model {}
 
 ProductTag.init(
   {
-    // define columns
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    product_id: {
+      type: DataTypes.INTEGER,
+    },
+    tag_id: {
+      type: DataTypes.INTEGER,
+    },
   },
   {
+    hooks:{
+      beforeCreate: async (newProductTag) => {
+        let {product_id, tag_id} = newProductTag;
+        product_id = product_id.hasOne(Product);
+        tag_id = tag_id.hasOne(Tag);
+        return newProductTag;
+      },
+      beforeUpdate: async (updateProductTag) => {
+        let {product_id, tag_id} = updateProductTag;
+        product_id = product_id.hasOne(Product);
+        tag_id = tag_id.hasOne(Tag);
+        return updateProductTag;
+      }
+    },
     sequelize,
     timestamps: false,
     freezeTableName: true,
