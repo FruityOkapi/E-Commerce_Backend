@@ -16,26 +16,20 @@ ProductTag.init(
     },
     product_id: {
       type: DataTypes.INTEGER,
+      references: {
+        model: Product,
+        key: 'id',
+      }
     },
     tag_id: {
       type: DataTypes.INTEGER,
+      references: {
+        model: Tag,
+        key: 'id',
+      }
     },
   },
   {
-    hooks:{
-      beforeCreate: async (newProductTag) => {
-        let {product_id, tag_id} = newProductTag;
-        product_id = product_id.hasOne(Product);
-        tag_id = tag_id.hasOne(Tag);
-        return newProductTag;
-      },
-      beforeUpdate: async (updateProductTag) => {
-        let {product_id, tag_id} = updateProductTag;
-        product_id = product_id.hasOne(Product);
-        tag_id = tag_id.hasOne(Tag);
-        return updateProductTag;
-      }
-    },
     sequelize,
     timestamps: false,
     freezeTableName: true,

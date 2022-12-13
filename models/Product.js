@@ -37,23 +37,13 @@ Product.init(
     },
     category_id: {
       type: DataTypes.INTEGER,
-
+      references: {
+        model: Category,
+        key: 'id',
+      },
     },
   },
   {
-    hooks: {
-      beforeCreate: async (newProduct) => {
-        let {category_id} = newProduct;
-        category_id = category_id.hasOne(Category)
-        return newProduct;
-      },
-      beforeUpdate: async (updateProduct) => {
-        let {product_id, tag_id} = updateProduct;
-        product_id = product_id.hasOne(Product);
-        tag_id = tag_id.hasOne(Tag);
-        return updateProduct;
-      }
-    },
     sequelize,
     timestamps: false,
     freezeTableName: true,
