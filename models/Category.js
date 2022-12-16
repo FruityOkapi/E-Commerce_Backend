@@ -5,6 +5,7 @@ const sequelize = require('../config/connection.js');
 class Category extends Model {}
 
 Category.init(
+  // This set of curly brackets sets the columns in the database and how they function.
   {
     id: {
       type: DataTypes.INTEGER,

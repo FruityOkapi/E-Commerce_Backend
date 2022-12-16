@@ -16,8 +16,11 @@ ProductTag.init(
     },
     product_id: {
       type: DataTypes.INTEGER,
+      // This acts as a foreignkey expression in SQL
       references: {
+        // Model selects the model the foreignkey is from
         model: 'product',
+        // key identifies the column from the model the foreignkey references
         key: 'id',
       }
     },
