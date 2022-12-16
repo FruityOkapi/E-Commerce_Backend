@@ -21,7 +21,15 @@ In the repository directory run "npm i"
 
 ## Usage
 
-Make sure to make a .env file with: then run the program with "npm start" and then just use insomnia URL requests to update the database.
+Make sure to make a .env file with:
+
+DB_NAME='ecommerce_db'
+
+DB_USER='INSERT_USER_HERE'
+
+DB_PASSWORD='INSERT_PASSWORD_HERE'
+
+Then run the program with "npm start" and then just use insomnia URL requests to update the database.
 
 https://drive.google.com/file/d/1qYmqbQGwl1mzbfM9J4yZITtfSshEqoqm/view?usp=sharing
 
